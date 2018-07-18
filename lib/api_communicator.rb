@@ -20,11 +20,10 @@ def get_character_movies_from_api(character)
 #  of movies by title. play around with puts out other info about a given film.
 answer = nil
 superArray = []
-
 characterArray = character_hash["results"]
- characterArray.each do |character_info|
+
+characterArray.each do |character_info|
    #add a conditional to only set answer when character name == charact (the argument we passed in)
-   #binding.pry
    if character_info["name"].downcase == character
      answer = character_info["films"]
    end
