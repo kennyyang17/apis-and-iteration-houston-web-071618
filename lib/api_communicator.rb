@@ -19,6 +19,7 @@ def get_character_movies_from_api(character)
 #  and that method will do some nice presentation stuff: puts out a list
 #  of movies by title. play around with puts out other info about a given film.
 answer = nil
+superArray = []
 
 characterArray = character_hash["results"]
  characterArray.each do |character_info|
@@ -32,7 +33,17 @@ characterArray = character_hash["results"]
 #-----------------
     # ANSWER IS AN ARRAY OF URLS. ITERATE AND PASS INTO GET METHOD
   superArray =  answer.map { |url| JSON.parse(RestClient.get(url))}
-  superArray.each do |film_thing|
+
+
+
+  #character_hash = JSON.parse(superArray)
+
+  #end
+end
+
+def parse_character_movies(films_hash)
+  # some iteration magic and puts out the movies in a nice list
+  films_hash.each do |film_thing|
     title = film_thing["title"]
     episodeID = film_thing["episode_id"]
     openCrawl = film_thing["opening_crawl"].to_s
@@ -41,15 +52,7 @@ characterArray = character_hash["results"]
     puts title
     puts "Episode # #{episodeID}"
     puts openCrawl
-
   end
-  #character_hash = JSON.parse(superArray)
-
-  #end
-end
-
-def parse_character_movies(films_hash)
-  # some iteration magic and puts out the movies in a nice list
 end
 
 def show_character_movies(character)
